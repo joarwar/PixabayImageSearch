@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <link rel="stylesheet" href="style.css">
     <meta charset="utf-8">
@@ -12,10 +12,9 @@
 </head>
 <body>
     <header>
-        <h1><img src="logo_square.png" alt="logo"></h1>
+        <h1><img src="logo_square.png" alt="logo" class="center"></h1>
         <h2>Pixabay Image Search</h2>
-        <section class="engine">
-            <input class="userInput" type="text" placeholder="Write search phrase here">
+            <input class="userInput" type="text" placeholder="Search images">
             <button type="button" id="executeButton">Search</button>
             <select id="colors">
                 <option value="anycolor" id="nocolor">Any color</option>
@@ -29,20 +28,15 @@
                 <option value="black">Black</option>
                 <option value="white">White</option>
             </select>
-        </section>
     </header>
     <main>
-        <section class="results">
-            <ul id="resultgrid">
-            </ul>
-        </section>
-        <section class="resultsbutton">
-            <button type="button" id="previous">Previous</button>
-            <button type="button" id="next">Next</button>
-        </section>  
+        <ul id="resultgrid">
+        </ul>
+        <button type="button" id="previous">Previous</button>
+        <button type="button" id="next">Next</button>
     </main>
 <footer>
     <p>&copy; 2022 Daniel Lindeberg, Joar Warholm, https://pixabay.com/ </p>
 </footer>
 </body>
- </html>
+</html>
