@@ -5,8 +5,7 @@ let next = document.querySelector("#next");
 let previous = document.querySelector("#previous");
 let pageNumber = 1;
 let buttonclick = 0;
-let change = document.querySelector("#colors"); // åtgärda så att man kan byta färg i dropdown och resultaten visas
-let anycolor = document.querySelector("#nocolor"); // fixa bättre logik för ifsats om any color väljs
+let color = document.querySelector("#colors"); // åtgärda så att man kan byta färg i dropdown och resultaten visas
 
 exeButton.onclick = function(event) {
     document.querySelector("#resultgrid").innerHTML=""
@@ -16,7 +15,7 @@ exeButton.onclick = function(event) {
 
 function SearchPhotos(){
     let fetchUrl = "";
-    if ( /* hitta logik för denna ifsats */){
+    if (color.value == "anycolor"){
         let params = new URLSearchParams({
             key: "25706674-b9c01a86dee6bf80ba5a5b48f",
             q: inputText.value,
