@@ -5,7 +5,6 @@ let next = document.querySelector("#next");
 let previous = document.querySelector("#previous");
 let pageNumber = 1;
 let buttonclick = 0;
-let color = document.querySelector("#colors"); // åtgärda så att man kan byta färg i dropdown och resultaten visas
 
 exeButton.onclick = function(event) {
     document.querySelector("#resultgrid").innerHTML=""
@@ -15,7 +14,7 @@ exeButton.onclick = function(event) {
 
 function SearchPhotos(){
     let fetchUrl = "";
-    if (color.value == "anycolor"){
+    if (inputColor.value == "anycolor"){
         let params = new URLSearchParams({
             key: "25706674-b9c01a86dee6bf80ba5a5b48f",
             q: inputText.value,
@@ -27,7 +26,7 @@ function SearchPhotos(){
     else {
         let params = new URLSearchParams({
             key: "25706674-b9c01a86dee6bf80ba5a5b48f",
-            q: inputColor.options[inputColor.selectedIndex].value + " " + inputText.value,
+            q: inputColor.value + " " + inputText.value,
             per_page: 10,
             page: pageNumber,
         });
@@ -47,7 +46,7 @@ fetch (fetchUrl)
         }
         data.hits.forEach(obj => { 
             const thisTitle = document.createElement("li");
-            thisTitle.innerHTML = "<img src=" + obj.previewURL + "></img><p>" + obj.user +"</p><p>" + obj.tags + "</p>";
+            thisTitle.innerHTML = "<img src=" + obj.previewURL + "></img><p>Author: " + obj.user +"</p><p>Tags: " + obj.tags + "</p>";
             document.querySelector("#resultgrid").appendChild(thisTitle)});
     });
 }
