@@ -50,7 +50,7 @@ fetch (fetchUrl)
         }
         data.hits.forEach(obj => { 
             const thisTitle = document.createElement("li");
-            thisTitle.innerHTML = "<img src=" + obj.previewURL + "></img><p>Author: " + obj.user +"</p><p>Tags: " + obj.tags + "</p>";
+            thisTitle.innerHTML = "<a href=" + obj.largeImageURL + "><img src=" + obj.previewURL + "></img></a><p>Author: " + obj.user +"</p><p>Tags: " + obj.tags + "</p>";
             document.querySelector("#resultgrid").appendChild(thisTitle)});
             let maxPage = elementNo.childElementCount;
             next.onclick = function(event) {
