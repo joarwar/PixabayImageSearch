@@ -5,11 +5,13 @@ let next = document.querySelector("#next");
 let previous = document.querySelector("#previous");
 let pageNumber = 1;
 let buttonclick = 0;
+let elementNo = document.querySelector("#resultgrid");
 
 exeButton.onclick = function(event) {
     document.querySelector("#resultgrid").innerHTML=""
     buttonclick++;
     SearchPhotos();
+    
 }
 
 function SearchPhotos(){
@@ -48,25 +50,35 @@ fetch (fetchUrl)
             const thisTitle = document.createElement("li");
             thisTitle.innerHTML = "<img src=" + obj.previewURL + "></img><p>Author: " + obj.user +"</p><p>Tags: " + obj.tags + "</p>";
             document.querySelector("#resultgrid").appendChild(thisTitle)});
-    });
+            let maxPage = elementNo.childElementCount;
+            next.onclick = function(event) {
+                if(maxPage == 10){
+                    if (buttonclick == 0){
+                        return;
+                    }
+                    else {
+                        pageNumber++;
+                        document.querySelector("#resultgrid").innerHTML=""
+                        SearchPhotos();
+                    }
+                }
+                else{
+                    return;
+                }
+            }
+            previous.onclick = function(event){
+                if (pageNumber == 1){
+                    return;
+                }
+                else {
+                    pageNumber--;
+                    document.querySelector("#resultgrid").innerHTML=""
+                    SearchPhotos();
+                }
+            
+            }
+    });   
 }
-next.onclick = function(event) {
-    if (buttonclick == 0){
-        return;
-    }
-    else {
-        pageNumber++;
-        document.querySelector("#resultgrid").innerHTML=""
-        SearchPhotos();
-    }
-}
-previous.onclick = function(event){
-    if (pageNumber == 1){
-        return;
-    }
-    else {
-        pageNumber--;
-        document.querySelector("#resultgrid").innerHTML=""
-        SearchPhotos();
-    }
-}
+// inputColor.addEventListener('change', function() {
+                            
+// });
