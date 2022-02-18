@@ -10,6 +10,7 @@ let elementNo = document.querySelector("#resultgrid");
 exeButton.onclick = function(event) {
     document.querySelector("#resultgrid").innerHTML=""
     buttonclick++;
+    pageNumber = 1;
     SearchPhotos();
     
 }
@@ -75,6 +76,9 @@ fetch (fetchUrl)
                     return;
                 }
                 else {
+                    if (fixedColor != inputColor.value){
+                        inputColor.value = fixedColor;
+                    }
                     pageNumber--;
                     document.querySelector("#resultgrid").innerHTML=""
                     SearchPhotos();

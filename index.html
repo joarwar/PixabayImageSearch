@@ -7,6 +7,7 @@
     <meta name="keywords" content="Pixabay,Search,Engine,css, HTML">
     <meta name="author" content="Joar Warholm, Daniel Lindeberg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="script.js" defer></script>
     <title>Pixabay Image Search</title>
 </head>
 <body>
@@ -14,9 +15,7 @@
         <h1><img src="logo_square.png" alt="logo"></h1>
         <h2>Pixabay Image Search</h2>
         <section class="engine">
-                <!-- <form> -->
             <input class="userInput" type="text" placeholder="Write search phrase here">
-                <!-- </form> -->
             <button type="button" id="executeButton">Search</button>
             <select id="colors">
                 <option value="anycolor" id="nocolor">Any color</option>
@@ -35,11 +34,6 @@
     <main>
         <section class="results">
             <ul id="resultgrid">
-                <li id="test1">
-                    <img src="logo_square.png" alt="logo">
-                    <p></p>
-                    <p></p>
-                </li>
             </ul>
         </section>
         <section class="resultsbutton">
@@ -51,5 +45,4 @@
     <p>&copy; 2022 Daniel Lindeberg, Joar Warholm, https://pixabay.com/ </p>
 </footer>
 </body>
-<script src="script.js" defer></script>
  </html>
