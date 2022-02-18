@@ -16,6 +16,7 @@ exeButton.onclick = function(event) {
 
 function SearchPhotos(){
     let fetchUrl = "";
+    let fixedColor = inputColor.value
     if (inputColor.value == "anycolor"){
         let params = new URLSearchParams({
             key: "25706674-b9c01a86dee6bf80ba5a5b48f",
@@ -57,6 +58,9 @@ fetch (fetchUrl)
                         return;
                     }
                     else {
+                        if (fixedColor != inputColor.value){
+                            inputColor.value = fixedColor;
+                        }
                         pageNumber++;
                         document.querySelector("#resultgrid").innerHTML=""
                         SearchPhotos();
@@ -79,6 +83,3 @@ fetch (fetchUrl)
             }
     });   
 }
-// inputColor.addEventListener('change', function() {
-                            
-// });
