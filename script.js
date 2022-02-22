@@ -6,18 +6,22 @@ let previous = document.querySelector("#previous");
 let pageNumber = 1;
 let buttonclick = 0;
 let elementNo = document.querySelector("#resultgrid");
+let form = document.querySelector('form');
 
 exeButton.onclick = function (event) {
     document.querySelector("#resultgrid").innerHTML = ""
     buttonclick++;
     pageNumber = 1;
     SearchPhotos();
+}
 
+form.onsubmit = event => {
+    event.preventDefault();
 }
 
 function SearchPhotos() {
     let fetchUrl = "";
-    let fixedColor = inputColor.value
+    let fixedColor = inputColor.value 
     if (inputColor.value == "anycolor") {
         let params = new URLSearchParams({
             key: "25706674-b9c01a86dee6bf80ba5a5b48f",
@@ -26,6 +30,7 @@ function SearchPhotos() {
             page: pageNumber,
         });
         fetchUrl = "https://pixabay.com/api/?" + params.toString();
+        
     }
     else {
         let params = new URLSearchParams({
@@ -36,23 +41,29 @@ function SearchPhotos() {
             page: pageNumber,
         });
         fetchUrl = "https://pixabay.com/api/?" + params.toString();
+        
     }
 
-    fetch(fetchUrl)
-        .then(function (data) {
-            return data.json();
-        })
-        .then(function (data) {
+
+    async function fetchData(){
+        const res = await fetch(fetchUrl)
+        const data = await res.json();
+        return data;
+    }
+
+    fetchData().then(data => {      
+            data;
             if (data.totalHits == 0) {
                 const thisTitle = document.createElement("li");
                 thisTitle.innerHTML = "No results found";
                 document.querySelector("#resultgrid").appendChild(thisTitle)
-                return;
+                return data;
             }
             data.hits.forEach(obj => {
                 const thisTitle = document.createElement("li");
                 thisTitle.innerHTML = "<a href=" + obj.largeImageURL + "><img src=" + obj.webformatURL + "></img></a><p>Author: " + obj.user + "</p><p>Tags: " + obj.tags + "</p>";
                 document.querySelector("#resultgrid").appendChild(thisTitle)
+                return data;
             });
             let maxPage = elementNo.childElementCount;
             next.onclick = function (event) {
@@ -85,7 +96,10 @@ function SearchPhotos() {
                     document.querySelector("#resultgrid").innerHTML = ""
                     SearchPhotos();
                 }
-
+    
             }
-        });
+            
+        
+        
+    })
 }
